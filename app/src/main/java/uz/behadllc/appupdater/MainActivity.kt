@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val updater = BehadUpdater.getUpdater()
 
         val bottomSheet = UpdateBottomSheet.Companion.Builder().also {
-            it.fragmentManager = supportFragmentManager
+            it.updaterFragmentManager = supportFragmentManager
             it.tag = "updateBottomSheet"
             it.imageResource = R.drawable.ic_launcher_foreground
             it.imageUrl = "https://play-lh.googleusercontent.com/GeGlCic2YQ8q9A_0-33Jm9nYpgpUfsKS8LeA-VaEkgsB_r4b9s9nMJqhcPxJdACjkA=w3840-h2160-rw"
