@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 30
 
     defaultConfig {
-        minSdk 21
-        targetSdk 32
+        minSdk 16
+        targetSdk 30
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -48,7 +48,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'uz.behadllc.app_updater_behad'
                 artifactId = 'app-updated-behad'
-                version = '1'
+                version = '2'
             }
         }
     }

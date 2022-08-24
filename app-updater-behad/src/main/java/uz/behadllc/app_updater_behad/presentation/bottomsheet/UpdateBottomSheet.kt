@@ -3,6 +3,7 @@ package uz.behadllc.app_updater_behad.presentation.bottomsheet
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -58,18 +59,31 @@ class UpdateBottomSheet : BottomSheetDialogFragment() {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setLightTheme() {
-        binding?.root?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.rounded_background_light))
-        binding?.firstBtnContainer?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.black_button_gradient_rounded))
-        binding?.secondBtnContainer?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.black_button_gradient_rounded))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            binding?.root?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.rounded_background_light))
+            binding?.firstBtnContainer?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.black_button_gradient_rounded))
+            binding?.secondBtnContainer?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.black_button_gradient_rounded))
+        } else {
+            binding?.root?.background = resources.getDrawable(R.drawable.rounded_background_light)
+            binding?.firstBtnContainer?.background = resources.getDrawable(R.drawable.black_button_gradient_rounded)
+            binding?.secondBtnContainer?.background = resources.getDrawable(R.drawable.black_button_gradient_rounded)
+        }
         binding?.firstBtnText?.setTextColor(requireActivity().resources.getColor(R.color.white))
         binding?.secondBtnText?.setTextColor(requireActivity().resources.getColor(R.color.white))
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setDarkTheme() {
-        binding?.root?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.rounded_background_dark))
-        binding?.firstBtnContainer?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.white_button_gradient_rounded))
-        binding?.secondBtnContainer?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.white_button_gradient_rounded))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            binding?.root?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.rounded_background_dark))
+            binding?.firstBtnContainer?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.white_button_gradient_rounded))
+            binding?.secondBtnContainer?.setBackgroundDrawable(requireActivity().getDrawable(R.drawable.white_button_gradient_rounded))
+        }else{
+            binding?.root?.background = resources.getDrawable(R.drawable.rounded_background_dark)
+            binding?.firstBtnContainer?.background = resources.getDrawable(R.drawable.white_button_gradient_rounded)
+            binding?.secondBtnContainer?.background = resources.getDrawable(R.drawable.white_button_gradient_rounded)
+        }
+
         binding?.firstBtnText?.setTextColor(requireActivity().resources.getColor(R.color.black))
         binding?.secondBtnText?.setTextColor(requireActivity().resources.getColor(R.color.black))
     }
@@ -133,7 +147,7 @@ class UpdateBottomSheet : BottomSheetDialogFragment() {
 
         class Builder {
 
-            lateinit var fragmentManager: FragmentManager
+            lateinit var updaterFragmentManager: FragmentManager
             var tag: String = "UpdateBottomSheet"
             var imageResource: Int? = null
             var imageUrl: String? = null
@@ -187,7 +201,7 @@ class UpdateBottomSheet : BottomSheetDialogFragment() {
                     bundle.putString(UpdaterConstants.SECOND_BUTTON_TEXT, secondButtonText)
                 }
 
-                newInstance(bundle).show(fragmentManager)
+                newInstance(bundle).show(updaterFragmentManager)
 
             }
 
