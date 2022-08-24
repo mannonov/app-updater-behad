@@ -48,7 +48,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'uz.behadllc.app_updater_behad'
                 artifactId = 'app-updated-behad'
-                version = '2'
+                version = '3'
             }
         }
     }
